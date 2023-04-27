@@ -1,4 +1,3 @@
-//
 //  ContentView.swift
 //  AIChatApp
 //
@@ -14,11 +13,11 @@ final class ViewModel: ObservableObject {
     private var client: OpenAISwift?
     
     func setup() {
-        client = OpenAISwift(authToken: // use the token from Open AI API page (!!Do not share the API KEY!!")
+        client = OpenAISwift(authToken: "Insert api key here (DO NOT SHARE YOUR PERSONAL TOKEN KEY")
     }
     func send(text: String,
               completion: @escaping (String) -> Void) {
-        client?.sendCompletion(with: text, model: .gpt3(.curie), maxTokens: 500, completionHandler: { result in switch result {
+        client?.sendCompletion(with: text, model: .gpt3(//Insert the language model you want eg: .Davinci, .Curie, .Ada, or .Babbage), maxTokens: 500, completionHandler: { result in switch result {
         case .success(let model):
             let output = model.choices.first?.text ?? ""
             completion(output)
@@ -58,7 +57,7 @@ struct ContentView: View {
             
             .background(
                 LinearGradient(gradient: Gradient(colors: [.black, .teal]), startPoint: .top, endPoint: .bottom)
-                           .frame(width: 1000, height: 1800)
+                           .frame(width: 1000, height: 6000)
                        .edgesIgnoringSafeArea(.all))
         }
     }
@@ -69,7 +68,7 @@ struct ContentView: View {
         models.append("Me: \(text)")
         viewModel.send(text: text) {response in
             DispatchQueue.main.async {
-                self.models.append("MONEY: "+response)
+                self.models.append("moneyAI: "+response)
                 self.text = ""
             }
         }
@@ -80,4 +79,6 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
+}
+
 }
