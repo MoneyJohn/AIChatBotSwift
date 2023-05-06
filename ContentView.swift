@@ -17,7 +17,8 @@ final class ViewModel: ObservableObject {
     }
     func send(text: String,
               completion: @escaping (String) -> Void) {
-        client?.sendCompletion(with: text, model: .gpt3(//Insert the language model you want eg: .Davinci, .Curie, .Ada, or .Babbage), maxTokens: 500, completionHandler: { result in switch result {
+        client?.sendCompletion(with: text, model: .gpt3(// the language model you want along with the open ai api key. More info in Open Ai we site
+        ), maxTokens: 500, completionHandler: { result in switch result {
         case .success(let model):
             let output = model.choices.first?.text ?? ""
             completion(output)
@@ -54,9 +55,9 @@ struct ContentView: View {
                 viewModel.setup()
             }
             .padding()
-            
+            //the code below can be modified to the developers prefered color.
             .background(
-                LinearGradient(gradient: Gradient(colors: [.black, .teal]), startPoint: .top, endPoint: .bottom)
+                LinearGradient(gradient: Gradient(colors: [.black, .red]), startPoint: .top, endPoint: .bottom)
                            .frame(width: 1000, height: 6000)
                        .edgesIgnoringSafeArea(.all))
         }
