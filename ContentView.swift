@@ -17,7 +17,7 @@ final class ViewModel: ObservableObject {
     }
     func send(text: String,
               completion: @escaping (String) -> Void) {
-        client?.sendCompletion(with: text, model: .gpt3(// the language model you want along with the open ai api key. More info in Open Ai we site
+        client?.sendCompletion(with: text, model: .gpt3(// the language model you want along with the open ai api key. More info in Open Ai website
         ), maxTokens: 500, completionHandler: { result in switch result {
         case .success(let model):
             let output = model.choices.first?.text ?? ""
